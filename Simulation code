@@ -1,0 +1,25 @@
+int sensorPin = A0; 
+int ledPin = 8;
+int pumpPin = 13;          
+int moistureValue = 0;    
+
+void setup() {
+  pinMode(pumpPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  moistureValue = analogRead(sensorPin);
+  Serial.print("Moisture Level: ");
+  Serial.println(moistureValue);
+
+  if (moistureValue < 500) {
+    digitalWrite(pumpPin, HIGH);
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(pumpPin, LOW);
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(1000);
+}
